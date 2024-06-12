@@ -1,0 +1,46 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor Control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body> -->
+    <!-- Your HTML content here -->
+
+    <!-- <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor Control</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <!-- Add your HTML content here -->
+    <script>
+        // Send cursor position to the server when the screen is touched or clicked
+        document.addEventListener('touchstart', sendCursorPosition);
+        document.addEventListener('mousedown', sendCursorPosition);
+
+        function sendCursorPosition(event) {
+            var x = event.touches ? event.touches[0].clientX : event.clientX;
+            var y = event.touches ? event.touches[0].clientY : event.clientY;
+
+            // Send cursor position to the server via AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/move_cursor', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('x=' + x + '&y=' + y);
+        }
+    </script>
+</body>
+</html>
